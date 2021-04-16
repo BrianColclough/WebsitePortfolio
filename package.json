@@ -1,0 +1,23 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "Website portfolio",
+  "main": "y",
+  "scripts": {
+    "test": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrianColclough/WebsitePortfolio.git"
+  },
+  "author": "Brian Colclough",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrianColclough/WebsitePortfolio/issues"
+  },
+  "homepage": "https://github.com/BrianColclough/WebsitePortfolio#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  }
+}
