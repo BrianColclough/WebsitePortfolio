@@ -9,6 +9,7 @@ router.post("/", urlencodedParser, function (req, res) {
   console.log(req.body);
   var temp = false;
   if (req.body.specialCharacters === "on") {
+    console.log("special characters are on");
     temp = true;
   }
   var userPassword = new password(req.body.length, temp);
