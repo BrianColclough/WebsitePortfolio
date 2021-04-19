@@ -1,8 +1,8 @@
 class Password {
-  constructor(length, specialChar, name) {
+  constructor(length, specialChar, id) {
     this.length = length;
     this.specialChar = specialChar;
-    name = this.createPassword(length, specialChar);
+    id = this.createPassword(length, specialChar);
   }
   createPassword(length, specialChar) {
     var characters =
@@ -10,7 +10,7 @@ class Password {
     var specialCharacters = "!$%&*";
     var specialCharactersLength = specialCharacters.length;
     var charactersLength = characters.length;
-    this.name = [];
+    this.id = [];
 
     console.log("we are createing the password");
     console.log(specialChar);
@@ -19,19 +19,19 @@ class Password {
         var temp = Math.floor(Math.random() * 10);
         if (temp < 3) {
           var charIndex = Math.floor(Math.random() * specialCharactersLength);
-          this.name.push(specialCharacters.charAt(charIndex));
+          this.id.push(specialCharacters.charAt(charIndex));
         } else {
           var charIndex = Math.floor(Math.random() * charactersLength);
-          this.name.push(characters.charAt(charIndex));
+          this.id.push(characters.charAt(charIndex));
         }
       }
     } else {
       for (var i = 0; i < length; i++) {
         var temp = Math.floor(Math.random() * charactersLength);
-        this.name.push(characters.charAt(temp));
+        this.id.push(characters.charAt(temp));
       }
     }
-    this.name = this.name.join("");
+    this.id = this.id.join("");
   }
 }
 module.exports = Password;

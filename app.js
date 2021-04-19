@@ -1,5 +1,17 @@
 var express = require("express");
 var app = express();
+const mongoose = require("mongoose");
+
+console.log(process.env.MONGO_ATLAS_PW);
+mongoose.connect(
+  "mongodb+srv://Brian:" +
+    process.env.MONGO_ATLAS_PW +
+    "@passwordgenerator.r5olo.mongodb.net/myFirstDatabase?$retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 app.set("view engine", "ejs");
 app.use("/assets", express.static("assets"));
