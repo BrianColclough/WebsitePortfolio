@@ -10,6 +10,8 @@ var passwordObject = require("../objects/password");
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 router.all("/", function (req, res) {
+  let x = Passwords.countDocuments();
+  console.log(x);
   res.render("enterPassword");
 });
 
@@ -88,18 +90,18 @@ router.post("/enter", urlencodedParser, function (req, res) {
     name: passName,
     password: userPassword.id,
   });
-  password
-    .save()
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(201).json({
-        message: "Handling POST requests to /enter",
-        createdPassword: password,
-      });
-    });
+  Passwords.findOneAndUpdate(
+    { name: req.body.name },
+    { $set: { password: userPassword.id} },
+    { upsert: true, useFindAndModify: false },
+    (err, newPassword) => {
+      if (err) {
+        console.log("error adding new password");
+      } else {
+        console.log(newPassword);
+      }
+    }
+  );
   res.render("password", { pass: userPassword });
 });
 
