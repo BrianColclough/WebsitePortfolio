@@ -34,21 +34,11 @@ router.get("/allPasswords", function (req, res) {
 //finding passwords to display them and finding them to delete them.
 router.get("/:name", (req, res, next) => {
   const name = req.params.name;
-  Passwords.find({ name: name })
-    .exec()
-    .then((doc) => {
-      console.log("from database " + doc);
-      res.status(200).json(doc);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({ error: err });
-    });
+  var test;
+  Passwords.find({ name: name }, (err, password) => {
+    res.render("displayPasswords", { pass: password });
+  });
 });
-
-// router.get("/delete", (req, res, next) => {
-//   res.redirect("/passwordgenerator");
-// });
 
 //delete function
 router.get("/delete/:name", urlencodedParser, (req, res, next) => {
@@ -90,9 +80,10 @@ router.post("/enter", urlencodedParser, function (req, res) {
     name: passName,
     password: userPassword.id,
   });
+
   Passwords.findOneAndUpdate(
     { name: req.body.name },
-    { $set: { password: userPassword.id} },
+    { $set: { password: userPassword.id } },
     { upsert: true, useFindAndModify: false },
     (err, newPassword) => {
       if (err) {
