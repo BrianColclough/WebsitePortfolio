@@ -17,18 +17,9 @@ router.all("/", function (req, res) {
 
 //return whole database
 router.get("/allPasswords", function (req, res) {
-  Passwords.find()
-    .exec()
-    .then((docs) => {
-      console.log(docs);
-      res.status(200).json(docs);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({
-        error: err,
-      });
-    });
+  Passwords.find({}, (err, passwords) => {
+    res.render("displayPasswords", { pass: passwords });
+  });
 });
 
 //finding passwords to display them and finding them to delete them.

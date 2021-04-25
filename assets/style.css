@@ -1,6 +1,9 @@
 .password-form {
   text-align: center;
 }
-
-body {
+li {
+  padding: 5px;
+  border-style: solid;
+  margin-bottom: 5px;
+  width: 25%;
 }
